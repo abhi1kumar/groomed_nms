@@ -144,7 +144,7 @@ CUDA_VISIBLE_DEVICES=0 python -u scripts/train_rpn_3d.py --config=groumd_nms --r
 
 ## Testing
 
-We provide models for the main experiments on KITTI Val 1/Val 2/Test data splits available to download [here](https://drive.google.com/file/d/1XjwHtkByOK9YEiK4MLn6B_s1GqLjP8M-/view?usp=sharing).
+We provide logs/models/predictions for the main experiments on KITTI Val 1/Val 2/Test data splits available to download [here](https://drive.google.com/file/d/1XjwHtkByOK9YEiK4MLn6B_s1GqLjP8M-/view?usp=sharing).
 
 Make an `output` folder in the project directory:
 
