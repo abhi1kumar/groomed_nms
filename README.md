@@ -1,13 +1,13 @@
-# GrooMeD-NMS: Grouped Mathematically Differentiable NMS for Monocular 3D Object Detection
+# [GrooMeD-NMS: Grouped Mathematically Differentiable NMS for Monocular 3D Object Detection](https://arxiv.org/pdf/2103.17202.pdf)
 
 <img src="images/groomed_nms.png" width="1024">
 <img src="images/demo.gif">
 
-[GrooMeD-NMS: Grouped Mathematically Differentiable NMS for Monocular 3D Object Detection](https://arxiv.org/pdf/2103.17202.pdf), [CVPR 2021](http://cvpr2021.thecvf.com/)
+[CVPR 2021](http://cvpr2021.thecvf.com/)
 
 [Abhinav Kumar](https://sites.google.com/view/abhinavkumar/), [Garrick Brazil](https://garrickbrazil.com/), [Xiaoming Liu](http://www.cse.msu.edu/~liuxm/index2.html)
 
-[project], [supp], [slides], [1min_talk], [demo](https://www.youtube.com/watch?v=PWctKkyWrno), [arxiv](https://arxiv.org/pdf/2103.17202.pdf)
+[project](http://cvlab.cse.msu.edu/project-groomednms.html), [supp](http://cvlab.cse.msu.edu/pdfs/kumar_brazil_liu_cvpr2021_supp.pdf), [5min_talk](https://youtu.be/63baAhNSz90), [slides](https://docs.google.com/presentation/d/1T6F03IcsjVTRUyJDITiUS5kH-3vQDJ3k9GS75YYAd3A/edit?usp=sharing), [demo](https://www.youtube.com/watch?v=PWctKkyWrno), [poster](https://docs.google.com/presentation/d/1cD4DryS0lEdJT2Zdy-TXkiCPfv39q7ddidlFltS_roc/edit?usp=sharing), [arxiv](https://arxiv.org/pdf/2103.17202.pdf)
 
 This code is based on [Kinematic-3D](https://github.com/garrickbrazil/kinematic3d), such that the setup/organization is very similar. A few of the implementations, such as classical NMS, are based on [Caffe](https://caffe.berkeleyvision.org/install_apt.html).
 
