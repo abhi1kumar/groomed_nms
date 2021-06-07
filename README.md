@@ -83,22 +83,22 @@ Please cite the following paper if you find this repository useful:
     
     ```bash
     ./groomed_nms
-    |--- cuda_env
-    |--- data
-    |      |---kitti
-    |            |---training
-    |            |        |---calib
-    |            |        |---image_2
-    |            |        |---label_2
-    |            |
-    |            |---testing
-    |                     |---calib
-    |                     |---image_2
-    |
-    |--- dependencies
-    |--- lib
-    |--- models
-    |--- scripts
+    ├── cuda_env
+    ├── data
+    │      ├── kitti
+    │            ├── training
+    │            │        ├── calib
+    │            │        ├── image_2
+    │            │        └── label_2
+    │            │
+    │            └── testing
+    │                     ├── calib
+    │                     └── image_2
+    │
+    ├── dependencies
+    ├── lib
+    ├── models
+    └── scripts
     ```
 
 	Then, use the following scripts to extract the data splits, which use soft-links to the above directory for efficient storage:
@@ -142,7 +142,7 @@ CUDA_VISIBLE_DEVICES=0 python -u scripts/train_rpn_3d.py --config=groumd_nms --r
 ```
 
 
-## Testing
+## Testing Pre-trained Models
 
 We provide logs/models/predictions for the main experiments on KITTI Val 1/Val 2/Test data splits available to download [here](https://drive.google.com/file/d/1XjwHtkByOK9YEiK4MLn6B_s1GqLjP8M-/view?usp=sharing).
 
@@ -156,14 +156,12 @@ Place different models in the `output` folder as follows:
 
 ```bash
 ./groomed_nms
-|--- output
-|      |---groumd_nms
-|      |
-|      |---groumd_nms_split2
-|      |
-|      |---groumd_nms_full_train_2
-|
-| ...
+├── output
+│      ├── groumd_nms
+│      ├── groumd_nms_split2
+│      └── groumd_nms_full_train_2
+│
+│ ...
 ```
 
 To test, run the file as below:
