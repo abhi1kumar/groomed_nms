@@ -1,5 +1,7 @@
 # [GrooMeD-NMS: Grouped Mathematically Differentiable NMS for Monocular 3D Object Detection](https://arxiv.org/pdf/2103.17202.pdf)
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/groomed-nms-grouped-mathematically/monocular-3d-object-detection-on-kitti-cars)](https://paperswithcode.com/sota/monocular-3d-object-detection-on-kitti-cars?p=groomed-nms-grouped-mathematically)
+
 <img src="images/groomed_nms.png" width="1024">
 <img src="images/demo.gif">
 
