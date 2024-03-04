@@ -467,7 +467,7 @@ class RPN_3D_loss(nn.Module):
                 transforms = torch.from_numpy(transforms).type(cls.dtype).cuda()
                 raw_gt     = torch.from_numpy(raw_gt)    .type(cls.dtype).cuda()
 
-                labels[img_index, fg_inds]  = transforms[fg_inds, 4]
+                labels[img_index, fg_inds]  = transforms[fg_inds, 4].cpu().numpy()
                 labels[img_index, ign_inds] = IGN_FLAG
                 labels[img_index, bg_inds]  = 0
 
