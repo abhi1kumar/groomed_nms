@@ -488,8 +488,8 @@ class RPN_3D_loss(nn.Module):
                 bbox_rot3d_tar[img_index, :] = transforms[:, 11]
 
                 if self.decomp_alpha:
-                    bbox_axis_tar[img_index, :] = torch.from_numpy(raw_gt[:, 19]).type(cls.dtype).cuda()
-                    bbox_head_tar[img_index, :] = torch.from_numpy(raw_gt[:, 20]).type(cls.dtype).cuda()
+                    bbox_axis_tar[img_index, :] = raw_gt[:, 19]
+                    bbox_head_tar[img_index, :] = raw_gt[:, 20]
                     bbox_rsin_tar[img_index, :] = transforms[:, 12]
                     bbox_rcos_tar[img_index, :] = transforms[:, 13]
 
