@@ -818,9 +818,10 @@ def bbox_transform_3d(ex_rois_2d, ex_rois_3d, gt_rois, decomp_alpha=False, has_v
     targets_dy = (gt_ctr_y - ex_ctr_y) / ex_heights
 
     delta_z = gt_rois[:, 2] - ex_rois_3d[:, 0]
-    scale_w = np.log(gt_rois[:, 3] / ex_rois_3d[:, 1])
-    scale_h = np.log(gt_rois[:, 4] / ex_rois_3d[:, 2])
-    scale_l = np.log(gt_rois[:, 5] / ex_rois_3d[:, 3])
+
+    scale_w = np.log(np.maximum(gt_rois[:, 3], 1.) / ex_rois_3d[:, 1])
+    scale_h = np.log(np.maximum(gt_rois[:, 4], 1.) / ex_rois_3d[:, 2])
+    scale_l = np.log(np.maximum(gt_rois[:, 5], 1.) / ex_rois_3d[:, 3])
     deltaRotY = gt_rois[:, 6] - ex_rois_3d[:, 4]
 
     if decomp_alpha:
