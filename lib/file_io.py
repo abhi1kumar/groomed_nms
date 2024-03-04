@@ -75,3 +75,19 @@ def pickle_write(file_path, obj):
     logging.info("=> Saving pickle to {}".format(file_path))
     with open(file_path, 'wb') as file:
         pickle.dump(obj, file)
+
+def read_lines(path, strip= True):
+    with open(path) as f:
+        lines = f.readlines()
+
+    if strip:
+        # you may also want to remove whitespace characters like `\n` at the end of each line
+        lines = [x.strip() for x in lines]
+
+    return lines
+
+
+def write_lines(path, lines_with_return_character):
+    with open(path, 'w') as f:
+        f.writelines(lines_with_return_character)
+
