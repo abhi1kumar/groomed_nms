@@ -143,8 +143,13 @@ def adjust_lr(conf, optimizer, iter):
             total_steps = max_iter
             step_count = iter
 
+        warmup = None if 'warmup' not in conf else conf.warmup
+        if warmup is not None and step_count <= warmup:
+            scale = (step_count+1) / float(warmup)
+            lr *= scale
+
         # perform the exact number of steps needed to get to lr_target
-        if lr_policy.lower() == 'step':
+        elif lr_policy.lower() == 'step':
             scale = (lr_target / lr) ** (1 / total_steps)
             lr *= scale ** step_count
 
@@ -662,7 +667,7 @@ def load_weights(model, path, replace_module=False):
     model.load_state_dict(src_weights)
     logging.info("=> Loaded model weights {}".format(path))
 
-def log_stats(tracker, iteration, start_time, start_iter, max_iter, skip=1, optional=''):
+def log_stats(tracker, iteration, start_time, start_iter, max_iter, skip=1, optional='', lr=0.004):
     """
     This function writes the given stats to the log / prints to the screen.
     Also, computes the estimated time arrival (eta) for completion and (dt) delta time per iteration.
@@ -682,6 +687,7 @@ def log_stats(tracker, iteration, start_time, start_iter, max_iter, skip=1, opti
     """
 
     display_str = 'iter: {}'.format((int((iteration + 1)/skip)))
+    display_str += ' lr: {:.6f}'.format(lr)
 
     # compute eta
     time_str, dt = compute_eta(start_time, iteration - start_iter, max_iter - start_iter)

@@ -148,9 +148,10 @@ def main(argv):
             # display
             # -----------------------------------------
             if (iteration + 1) % conf.display == 0 and iteration > start_iter:
+                lr = get_lr(optimizer)
 
                 # log results
-                log_stats(tracker, iteration, start_time, start_iter, conf.max_iter)
+                log_stats(tracker, iteration, start_time, start_iter, conf.max_iter, lr= lr)
 
                 # reset tracker
                 tracker = edict()
