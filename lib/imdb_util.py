@@ -118,9 +118,9 @@ class Dataset(torch.utils.data.Dataset):
 
                     train_folder = os.path.join(root, db['name'], data_type)
 
-                    ann_folder = os.path.join(train_folder, 'label_2', '')
+                    ann_folder = os.path.join(train_folder, 'label', '')
                     cal_folder = os.path.join(train_folder, 'calib', '')
-                    im_folder = os.path.join(train_folder, 'image_2', '')
+                    im_folder = os.path.join(train_folder, 'image', '')
 
                     # get sorted filepaths
                     annlist = sorted(glob(ann_folder + '*.txt'))
@@ -137,9 +137,9 @@ class Dataset(torch.utils.data.Dataset):
 
                         calpath = os.path.join(cal_folder, id + '.txt')
                         impath = os.path.join(im_folder, id + db['im_ext'])
-                        impath_pre = os.path.join(train_folder, 'prev_2', id + '_01' + db['im_ext'])
-                        impath_pre2 = os.path.join(train_folder, 'prev_2', id + '_02' + db['im_ext'])
-                        impath_pre3 = os.path.join(train_folder, 'prev_2', id + '_03' + db['im_ext'])
+                        #impath_pre = os.path.join(train_folder, 'prev_2', id + '_01' + db['im_ext'])
+                        #impath_pre2 = os.path.join(train_folder, 'prev_2', id + '_02' + db['im_ext'])
+                        #impath_pre3 = os.path.join(train_folder, 'prev_2', id + '_03' + db['im_ext'])
 
                         # read gts
                         p2 = read_kitti_cal(calpath)
@@ -158,9 +158,9 @@ class Dataset(torch.utils.data.Dataset):
                         # im properties
                         im = Image.open(impath)
                         obj.path = impath
-                        obj.path_pre = impath_pre
-                        obj.path_pre2 = impath_pre2
-                        obj.path_pre3 = impath_pre3
+                        #obj.path_pre = impath_pre
+                        #obj.path_pre2 = impath_pre2
+                        #obj.path_pre3 = impath_pre3
                         obj.imW, obj.imH = im.size
 
                         # database properties
@@ -460,7 +460,6 @@ class Dataset(torch.utils.data.Dataset):
             im = cv2.imread(self.imdb[index].path)
 
         else:
-
             # read images
             im = cv2.imread(self.imdb[index].path)
 
@@ -787,6 +786,9 @@ def read_kitti_label(file, p2, use_3d_for_2d=False):
 
             # actually center the box
             cy3d -= (h3d / 2)
+
+            if cz3d <= 1:
+                continue
 
             if use_3d_for_2d and h3d > 0 and w3d > 0 and l3d > 0:
 
