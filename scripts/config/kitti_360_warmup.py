@@ -13,13 +13,13 @@ def Config():
     
     # solver settings
     conf.solver_type = 'sgd'
-    conf.lr = 0.004
+    conf.lr = 0.001
     conf.momentum = 0.9
     conf.weight_decay = 0.0005
     conf.max_iter = 120000
     conf.warmup = 500
     conf.snapshot_iter = 20000
-    conf.display = 250
+    conf.display = 50
     conf.do_test = True
     
     conf.fast_eval = True
@@ -30,7 +30,7 @@ def Config():
     conf.lr_target = conf.lr * 0.00001
 
     conf.pretrained = 'output/kitti_360_warmup_100/weights/model_20000_pkl'
-    conf.copy_stats = True
+    # conf.copy_stats = True
 
     # random
     conf.rng_seed = 5
