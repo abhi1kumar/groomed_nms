@@ -188,7 +188,8 @@ class RPN(nn.Module):
         bbox_2d = torch.cat((bbox_x, bbox_y, bbox_w, bbox_h), dim=2)
         bbox_3d = torch.cat((bbox_x3d, bbox_y3d, bbox_z3d, bbox_w3d, bbox_h3d, bbox_l3d, bbox_alpha, bbox_alpha.clone(), bbox_axis, bbox_head), dim=2)
 
-        feat_size = [feat_h, feat_w]
+        # See https://github.com/garrickbrazil/M3D-RPN/issues/10#issuecomment-545805092
+        feat_size =  torch.tensor([feat_h, feat_w])
 
         cls = flatten_tensor(cls)   #[batch x num_classes x (H*num_anchors) x W ] --> [batch x (H*num_anchors*W) x num_classes]
         prob = flatten_tensor(prob) #[batch x num_classes x (H*num_anchors) x W ] --> [batch x (H*num_anchors*W) x num_classes]
