@@ -474,24 +474,24 @@ class RPN_3D_loss(nn.Module):
                 #===============================================================
                 # Assign Targets - transformations of ground truths) as well as raw ones
                 #===============================================================
-                bbox_x_tar[img_index, :] = transforms[:, 0]
-                bbox_y_tar[img_index, :] = transforms[:, 1]
-                bbox_w_tar[img_index, :] = transforms[:, 2]
-                bbox_h_tar[img_index, :] = transforms[:, 3]
+                bbox_x_tar[img_index, :] = torch.from_numpy(transforms[:, 0]).type(cls.dtype).cuda()
+                bbox_y_tar[img_index, :] = torch.from_numpy(transforms[:, 1]).type(cls.dtype).cuda()
+                bbox_w_tar[img_index, :] = torch.from_numpy(transforms[:, 2]).type(cls.dtype).cuda()
+                bbox_h_tar[img_index, :] = torch.from_numpy(transforms[:, 3]).type(cls.dtype).cuda()
 
-                bbox_x3d_tar[img_index, :]  = transforms[:, 5]
-                bbox_y3d_tar[img_index, :]  = transforms[:, 6]
-                bbox_z3d_tar[img_index, :]  = transforms[:, 7]
-                bbox_w3d_tar[img_index, :]  = transforms[:, 8]
-                bbox_h3d_tar[img_index, :]  = transforms[:, 9]
-                bbox_l3d_tar[img_index, :]  = transforms[:, 10]
-                bbox_rot3d_tar[img_index, :] = transforms[:, 11]
+                bbox_x3d_tar[img_index, :]  = torch.from_numpy(transforms[:, 5]).type(cls.dtype).cuda()
+                bbox_y3d_tar[img_index, :]  = torch.from_numpy(transforms[:, 6]).type(cls.dtype).cuda()
+                bbox_z3d_tar[img_index, :]  = torch.from_numpy(transforms[:, 7]).type(cls.dtype).cuda()
+                bbox_w3d_tar[img_index, :]  = torch.from_numpy(transforms[:, 8]).type(cls.dtype).cuda()
+                bbox_h3d_tar[img_index, :]  = torch.from_numpy(transforms[:, 9]).type(cls.dtype).cuda()
+                bbox_l3d_tar[img_index, :]  = torch.from_numpy(transforms[:, 10]).type(cls.dtype).cuda()
+                bbox_rot3d_tar[img_index, :] = torch.from_numpy(transforms[:, 11]).type(cls.dtype).cuda()
 
                 if self.decomp_alpha:
-                    bbox_axis_tar[img_index, :] = raw_gt[:, 19]
-                    bbox_head_tar[img_index, :] = raw_gt[:, 20]
-                    bbox_rsin_tar[img_index, :] = transforms[:, 12]
-                    bbox_rcos_tar[img_index, :] = transforms[:, 13]
+                    bbox_axis_tar[img_index, :] = torch.from_numpy(raw_gt[:, 19]).type(cls.dtype).cuda()
+                    bbox_head_tar[img_index, :] = torch.from_numpy(raw_gt[:, 20]).type(cls.dtype).cuda()
+                    bbox_rsin_tar[img_index, :] = torch.from_numpy(transforms[:, 12]).type(cls.dtype).cuda()
+                    bbox_rcos_tar[img_index, :] = torch.from_numpy(transforms[:, 13]).type(cls.dtype).cuda()
 
                 # raw_gt       = np array [(H*num_anchors*W) x 21]  ( 4 X1Y1X2Y2 + 1 class_label + 16)
                 #                                 5   6    7       8    9    10   11     12    13    14    15
