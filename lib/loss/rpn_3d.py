@@ -1280,8 +1280,8 @@ class RPN_3D_loss(nn.Module):
 
                     loss_bbox_rsin = F.smooth_l1_loss(bbox_rsin[active], bbox_rsin_tar[active], reduction='none')
                     loss_bbox_rcos = F.smooth_l1_loss(bbox_rcos[active], bbox_rcos_tar[active], reduction='none')
-                    loss_axis = F.binary_cross_entropy(bbox_axis[active], bbox_axis_tar[active], reduction='none')
-                    loss_head = F.binary_cross_entropy(bbox_head[active], bbox_head_tar[active], reduction='none')
+                    loss_axis = F.binary_cross_entropy(torch.clamp(bbox_axis[active], 0.01, 0.99), torch.clamp(bbox_axis_tar[active], 0.01, 0.99), reduction='none')
+                    loss_head = F.binary_cross_entropy(torch.clamp(bbox_head[active], 0.01, 0.99), torch.clamp(bbox_head_tar[active], 0.01, 0.99), reduction='none')
 
                     loss_bbox_ry3d = loss_bbox_rcos
                     loss_bbox_ry3d[bbox_axis_sin_mask] = loss_bbox_rsin[bbox_axis_sin_mask]
