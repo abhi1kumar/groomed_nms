@@ -156,6 +156,7 @@ def project_3d(p2, x3d, y3d, z3d, w3d, h3d, l3d, ry3d, return_3d=False):
         l3d: length of object
         ry3d: rotation w.r.t y-axis
     """
+    EPS = 1e-2
 
     if type(x3d) == np.ndarray:
 
@@ -199,7 +200,7 @@ def project_3d(p2, x3d, y3d, z3d, w3d, h3d, l3d, ry3d, return_3d=False):
         # project to 2D
         corners_2d = p2_batch @ corners_3d
 
-        corners_2d[:, :2, :] /= corners_2d[:, 2, :][:, np.newaxis, :]
+        corners_2d[:, :2, :] /= (corners_2d[:, 2, :][:, np.newaxis, :] + EPS)
 
         verts3d = corners_2d
 
@@ -248,7 +249,7 @@ def project_3d(p2, x3d, y3d, z3d, w3d, h3d, l3d, ry3d, return_3d=False):
         # project to 2D
         corners_2d = torch.bmm(p2_batch, corners_3d)
 
-        corners_2d[:, :2, :] /= corners_2d[:, 2, :][:, np.newaxis, :]
+        corners_2d[:, :2, :] /= (corners_2d[:, 2, :][:, np.newaxis, :] + EPS)
 
         verts3d = corners_2d
 
@@ -279,7 +280,7 @@ def project_3d(p2, x3d, y3d, z3d, w3d, h3d, l3d, ry3d, return_3d=False):
 
         corners_3D_1 = np.vstack((corners_3d, np.ones((corners_3d.shape[-1]))))
         corners_2D = p2.dot(corners_3D_1)
-        corners_2D = corners_2D / corners_2D[2]
+        corners_2D = corners_2D / (corners_2D[2] + EPS)
 
         # corners_2D = np.zeros([3, corners_3d.shape[1]])
         # for i in range(corners_3d.shape[1]):
