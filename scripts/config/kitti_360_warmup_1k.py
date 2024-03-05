@@ -94,7 +94,7 @@ def Config():
     # nms
     conf.nms_topN_pre = 3000
     conf.nms_topN_post = 40
-    conf.nms_thres = 0.4
+    conf.nms_thres = 0.1
     conf.clip_boxes = False
 
     conf.test_protocol = 'kitti'
