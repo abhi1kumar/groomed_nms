@@ -103,6 +103,13 @@ def loss_backprop(loss, net, optimizer, conf=None, iteration=None):
 
         loss.backward()
 
+        clip_value = 50
+        grad_norm = torch.nn.utils.clip_grad_norm_(net.parameters(), clip_value)
+        if grad_norm > clip_value:
+           logging.info("iter: {} Skipping gradient update due to high norm {:.2f}".format(iteration, grad_norm))
+           optimizer.zero_grad()
+           return
+
         torch.nn.utils.clip_grad_value_(net.parameters(), 1)
 
         # batch skip, simulates larger batches by skipping gradient step
@@ -111,7 +118,6 @@ def loss_backprop(loss, net, optimizer, conf=None, iteration=None):
 
             optimizer.step()
             optimizer.zero_grad()
-
 
 def adjust_lr(conf, optimizer, iter):
     """
@@ -636,6 +642,8 @@ def copy_stats(output, pretrained, redo_anchors=False):
         copyfile(os.path.join(file_parts(file_parts(pretrained)[0])[0], 'pose_stds.pkl'), os.path.join(output, 'pose_stds.pkl'))
     if os.path.exists(os.path.join(file_parts(file_parts(pretrained)[0])[0], 'pose_means.pkl')):
         copyfile(os.path.join(file_parts(file_parts(pretrained)[0])[0], 'pose_means.pkl'), os.path.join(output, 'pose_means.pkl'))
+    if os.path.exists(os.path.join(file_parts(file_parts(pretrained)[0])[0], 'imdb.pkl')):
+        copyfile(os.path.join(file_parts(file_parts(pretrained)[0])[0], 'imdb.pkl'), os.path.join(output, 'imdb.pkl'))
 
 
 def load_weights(model, path, replace_module=False):
