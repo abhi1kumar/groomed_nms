@@ -12,8 +12,8 @@ def Config():
     conf.model = 'densenet121_3d_dilate_decomp_alpha'
     
     # solver settings
-    conf.solver_type = 'sgd'
-    conf.lr = 0.001
+    conf.solver_type = 'adam'
+    conf.lr = 0.0004
     conf.momentum = 0.9
     conf.weight_decay = 0.0005
     conf.max_iter = 80000
