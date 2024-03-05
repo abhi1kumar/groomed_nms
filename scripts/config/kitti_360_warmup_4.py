@@ -20,7 +20,7 @@ def Config():
     conf.warmup = 1000
     conf.snapshot_iter = 20000
     conf.display = 50
-    conf.do_test = False
+    conf.do_test = True
     
     conf.fast_eval = True
     
