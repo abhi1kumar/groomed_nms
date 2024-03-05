@@ -781,14 +781,14 @@ def read_kitti_label(file, p2, use_3d_for_2d=False):
             cz3d = float(parsed.group(14)) # center of car in 3d
             rotY = float(parsed.group(15))
 
+            if cz3d <= 1 or h3d <= 0.1 or w3d <= 0.1 or l3d <= 0.1 or width <= 0.1 or height <= 0.1 or np.abs(rotY) > np.pi:
+                continue
+
             # store the elevation of car (should be ~ 1.65)
             elevation = cy3d
 
             # actually center the box
             cy3d -= (h3d / 2)
-
-            if cz3d <= 1:
-                continue
 
             if use_3d_for_2d and h3d > 0 and w3d > 0 and l3d > 0:
 
