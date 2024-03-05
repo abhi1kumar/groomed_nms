@@ -126,7 +126,7 @@ def adjust_lr(conf, optimizer, iter):
 
     if 'batch_skip' in conf and ((iter + 1) % conf.batch_skip) > 0: return
 
-    if conf.solver_type.lower() == 'sgd':
+    if conf.solver_type.lower() == 'sgd' or conf.solver_type.lower() == 'adam':
 
         lr = conf.lr
         lr_steps = conf.lr_steps
