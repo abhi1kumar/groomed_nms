@@ -16,11 +16,11 @@ def Config():
     conf.lr = 0.0004
     conf.momentum = 0.9
     conf.weight_decay = 0.0005
-    conf.max_iter = 80000
-    conf.warmup = 3000
+    conf.max_iter = 160000
+    conf.warmup = 1000
     conf.snapshot_iter = 20000
     conf.display = 50
-    conf.do_test = True
+    conf.do_test = False
     
     conf.fast_eval = True
     
@@ -77,7 +77,7 @@ def Config():
     # ----------------------------------------
     
     # detection sampling
-    conf.batch_size = 16
+    conf.batch_size = 8
     conf.fg_image_ratio = 1.0
     conf.box_samples = 0.20
     conf.fg_fraction = 0.20
