@@ -1395,7 +1395,10 @@ def test_kitti_3d_old(dataset_test, net, rpn_conf, results_path, test_path, has_
     from lib.imdb_util import read_kitti_label
 
     imlist = list_files(os.path.join(test_path, dataset_test, split_name, 'image_2', ''), '*'+rpn_conf.datasets_train[0]['im_ext'])
-    flist = read_lines("data/kitti_360/ImageSets/val_det_samp.txt")
+    if split_name == "validation":
+        flist = read_lines("data/kitti_360/ImageSets/val_det_samp.txt")
+    else:
+        flist = read_lines("data/kitti_360/ImageSets/test_det.txt")
     imlist = [os.path.join(test_path, dataset_test, split_name, 'image', f + ".png") for f in flist]
 
     preprocess = Preprocess([rpn_conf.test_scale], rpn_conf.image_means, rpn_conf.image_stds)
