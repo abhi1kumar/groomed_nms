@@ -734,6 +734,7 @@ class RPN_3D_loss(nn.Module):
                     # Get the foreground and background for NMS. This will be different from usual foreground since
                     # because of the computational issues, we only have at max 500 boxes in the NMS
                     # print(fg_inds_tensor)
+                    fg_inds_tensor          =  fg_inds_tensor.cuda()
                     fg_index_for_nms        = fg_inds_tensor[sorted_index[:num_boxes_for_nms]]
 
                     if scores_to_nms_img.is_cuda:
